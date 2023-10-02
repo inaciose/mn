@@ -1,0 +1,133 @@
+>> % folha 1 - exercicio 8 a)
+>> xbar = 2
+
+xbar =
+
+     2
+
+>> ybar=3
+
+ybar =
+
+     3
+
+>> xmin = 1.999
+
+xmin =
+
+    1.9990
+
+>> xmax = 2.001
+
+xmax =
+
+    2.0010
+
+>> ymin = 2.999
+
+ymin =
+
+    2.9990
+
+>> ymax = 3.001
+
+ymax =
+
+    3.0010
+
+>> MExbar = max(abs(xbar-xmin), abs(xbar - xmax))
+
+MExbar =
+
+   1.0000e-03
+
+>> format long
+>> MExbar
+
+MExbar =
+
+     9.999999999998899e-04
+
+>> format short
+>> MExbar
+
+MExbar =
+
+   1.0000e-03
+
+>> MEybar = max(abs(ybar-ymin), abs(ybar - ymax))
+
+MEybar =
+
+   1.0000e-03
+
+>> % função base(de que queremos as derivadas parciais para a FFPE)
+>> f=@(x,y) sqrt(x^2 + y^2)
+
+f =
+
+  function_handle with value:
+
+    @(x,y)sqrt(x^2+y^2)
+
+>> % declarar variaveis simbólicas
+>> syms x
+>> syms y
+>> 
+>> % derivada parcial em x
+>> diff(f, x)
+ 
+ans =
+ 
+x/(x^2 + y^2)^(1/2)
+ 
+>> % simplify tem de ser com copy/paste
+>> simplify (x/(x^2 + y^2)^(1/2))
+ 
+ans =
+ 
+x/(x^2 + y^2)^(1/2)
+ 
+>> diff(f, y)
+ 
+ans =
+ 
+y/(x^2 + y^2)^(1/2)
+
+>> % majorantes para a FFPE 
+>> Mx = xmax/(xmax^2 + ymin^2)
+
+Mx =
+
+    0.1539
+
+>> My = ymax/(xmin^2 + ymax^2)
+
+My =
+
+    0.2308
+
+>> % erro absoluto de r
+>> delta_rbar = Mx * MExbar + My * MEybar
+
+delta_rbar =
+
+   3.8476e-04
+
+>> % aproximação de r
+>> rbar = sqrt(xbar^2 + ybar^2)
+
+rbar =
+
+    3.6056
+
+>> % calculo do majorante do erro relativo, 
+>> % com base no majorante do erro absoluto
+
+>> errorelativo_xbar = delta_rbar/(abs(rbar) - delta_rbar)
+
+errorelativo_xbar =
+
+   1.0672e-04
+
+>> 
