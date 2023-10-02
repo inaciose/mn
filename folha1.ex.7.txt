@@ -1,0 +1,23 @@
+>> f = @(a,b) sin(a+b)
+
+f =
+
+  function_handle with value:
+
+    @(a,b)sin(a+b)
+
+>> syms a
+ 
+>> syms b
+
+>> diff (f, a)
+ 
+ans =
+ 
+cos(a + b)
+ 
+>> diff (f, b)
+ 
+ans =
+ 
+cos(a + b)
