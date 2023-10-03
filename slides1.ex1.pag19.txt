@@ -1,0 +1,196 @@
+>> % a função em causa
+>> f = @(x,y,z) 2*x*y/(x^2 + z)
+
+f =
+
+  function_handle with value:
+
+    @(x,y,z)2*x*y/(x^2+z)
+
+>> xbar = 3.1415
+
+xbar =
+
+    3.1415
+
+>> ybar = 1.732
+
+ybar =
+
+    1.7320
+
+>> zbar = 1.4142
+
+zbar =
+
+    1.4142
+
+>> % calcular fbar
+>> f(xbar, ybar, zbar)
+
+ans =
+
+    0.9645
+
+>> % calcular as três derivadas parciais
+>> % presumo que depois serão calculadas
+>> % no ponto (xbar, ybar, zbar)
+>> syms x
+>> syms y
+>> syms z
+>> 
+>> diff(f, x)
+ 
+ans =
+ 
+(2*y)/(x^2 + z) - (4*x^2*y)/(x^2 + z)^2
+ 
+>> simplify ((2*y)/(x^2 + z) - (4*x^2*y)/(x^2 + z)^2)
+ 
+ans =
+ 
+(2*y*(- x^2 + z))/(x^2 + z)^2
+ 
+>> dxf = ans
+ 
+dxf =
+ 
+(2*y*(- x^2 + z))/(x^2 + z)^2
+ 
+>> diff(f, y)
+ 
+ans =
+ 
+(2*x)/(x^2 + z)
+ 
+>> dyf = ans
+ 
+dyf =
+ 
+(2*x)/(x^2 + z)
+ 
+>> diff(f, z)
+ 
+ans =
+ 
+-(2*x*y)/(x^2 + z)^2
+ 
+>> simplify (-(2*x*y)/(x^2 + z)^2)
+ 
+ans =
+ 
+-(2*x*y)/(x^2 + z)^2
+ 
+>> dzf = ans
+ 
+dzf =
+ 
+-(2*x*y)/(x^2 + z)^2
+ 
+>> pi
+
+ans =
+
+    3.1416
+
+>> format long 
+>> pi
+
+ans =
+
+   3.141592653589793
+
+>> sqrt(3)
+
+ans =
+
+   1.732050807568877
+
+>> sqrt(2)
+
+ans =
+
+   1.414213562373095
+
+>> format short
+ 
+>> dxf
+ 
+dxf =
+ 
+(2*y*(- x^2 + z))/(x^2 + z)^2
+ 
+ 
+>> fx = @(x,y,z) (2*y*(- x^2 + z))/(x^2 + z)^2
+
+fx =
+
+  function_handle with value:
+
+    @(x,y,z)(2*y*(-x^2+z))/(x^2+z)^2
+
+>> fx(xbar, ybar, zbar)
+
+ans =
+
+   -0.2300
+
+>> dyf
+ 
+dyf =
+ 
+(2*x)/(x^2 + z)
+ 
+>> fy = @(x,y,z)(2*x)/(x^2 + z)
+
+fy =
+
+  function_handle with value:
+
+    @(x,y,z)(2*x)/(x^2+z)
+
+>> fy(xbar, ybar, zbar)
+
+ans =
+
+    0.5568
+
+>> dzf
+ 
+dzf =
+ 
+-(2*x*y)/(x^2 + z)^2
+ 
+>> fz = @(x,y,z) -(2*x*y)/(x^2 + z)^2
+
+fz =
+
+  function_handle with value:
+
+    @(x,y,z)-(2*x*y)/(x^2+z)^2
+
+>> fz(xbar, ybar, zbar)
+
+ans =
+
+   -0.0855
+
+>> delta_fbar = 0.2300 * 0.00009 + 0.5568 * 0.0001 + 0.0855 * 0.00001
+
+delta_fbar =
+
+   7.7235e-05
+ 
+>> (0.339 * 10^-3)/(0.964 - (0.339 * 10^-3))
+
+ans =
+
+   3.5178e-04
+
+>> (7.7235e-05)/(0.964 - 7.7235e-05)
+
+ans =
+
+   8.0126e-05
+
+>> 
